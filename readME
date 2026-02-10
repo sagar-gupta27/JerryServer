@@ -1,0 +1,25 @@
+# Go HTTP Server
+A lightweight HTTP server built from scratch in Go.
+Supports video streaming and file downloading.
+
+## Run the server
+``go run main.go``
+
+## Features
+- Custom HTTP server
+- Routing
+- Video streaming
+- File downloading
+- Pure Go (no external deps)
+
+Note:= don't forget to have video in directory 
+created that HTTP server from scratch by using low-level 
+system calls to set up a socket connection through the syscall module.
+As we know, both HTTP and TCP are protocols, but HTTP defines the rules
+for how data is exchanged between applications (data type, format, headers, etc.), 
+while TCP defines how the actual data is transported between machines. 
+Since TCP is already implemented by the kernel, I didn’t need to build it from scratch.
+Because HTTP runs on top of TCP, I just configured TCP using syscalls and then implemented
+my own HTTP rules on top of it. If that’s still confusing, think of it this way:
+both HTTP and TCP are sets of rules, but TCP is provided by the kernel,
+while I defined my own HTTP rules myself.

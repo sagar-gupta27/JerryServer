@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head><title>Advanced HTTP Server</title></head>
+<body>
+	<ul>
+          <h1>httpp erver from scrach</h1>
+		<li><a href="/download">download video/></li>
+		<li><a href="/stream">stream video/></li>
+	</ul>
+	<div id="ws-output"></div>
+	<script>
+		function connectWS() {
+			const ws = new WebSocket('ws://localhost:8080/ws');
+			const output = document.getElementById('ws-output');
+			
+			ws.onopen = () => {
+				output.innerHTML += '<p>✅ WebSocket Connected!</p>';
+				ws.send('Hello Server!');
+			};
+			
+			ws.onmessage = (e) => {
+				output.innerHTML += '<p>📨 Received: ' + e.data + '</p>';
+			};
+			
+			ws.onerror = (e) => {
+                    console.log(e)
+				output.innerHTML += '<p>❌ Error: ' + e.type + '</p>';
+			};
+		}
+	</script>
+</body>
+</html>
